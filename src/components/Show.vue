@@ -1,8 +1,7 @@
 <template>
   <div>
-    <h2>メモ詳細</h2>
-    <hr />
-    <textarea v-model="memos[id]"></textarea>
+    <h3>メモ詳細</h3>
+    <textarea textarea rows="4" cols="35" v-model="memos[id]"></textarea>
     <button @click="updateMemo">編集</button>
     <button @click="removeMemo">削除</button>
   </div>

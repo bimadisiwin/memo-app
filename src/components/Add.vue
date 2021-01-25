@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <h2>新規作成</h2>
-    <hr />
-    <textarea v-model="newMemo"></textarea>
+  <div class="button">
+    <h3>新規作成</h3>
+    <textarea rows="4" cols="35" v-model="newMemo"></textarea>
     <button @click="addMemo">追加</button>
   </div>
 </template>

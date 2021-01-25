@@ -1,18 +1,22 @@
 <template>
   <div id="app">
-    <h1>メモアプリ</h1>
-    <ul>
-      <li v-for="(memo, id) in displayTitle" :key="memo.id">
-        <router-link :to="/memos/ + id">{{ memo }}</router-link>
-      </li>
-    </ul>
+    <div class="left-column">
+      <ul>
+        <li v-for="(memo, id) in displayTitle" :key="memo.id">
+          <router-link :to="/memos/ + id">{{ memo }}</router-link>
+        </li>
+      </ul>
+    </div>
     <!-- コンポーネント内で使われるカスタムイベントを呼び出す -->
-    <router-view
-      @add-click="createMemo"
-      @update-click="updateMemo"
-      @remove-click="removeMemo"
-      :memos="memos"
-    ></router-view>
+    <div class="right-column">
+      <router-view
+        class="button"
+        @add-click="createMemo"
+        @update-click="updateMemo"
+        @remove-click="removeMemo"
+        :memos="memos"
+      ></router-view>
+    </div>
   </div>
 </template>
 
@@ -38,7 +42,6 @@ export default {
       }
     }
   },
-  //
   watch: {
     memos: {
       handler() {
@@ -76,3 +79,24 @@ export default {
 };
 </script>
 
+<style scoped>
+#app {
+  padding: 30px 40px;
+  border: 1px solid #aaa;
+  height: 600px;
+  width: 500px;
+}
+.left-column {
+  float: left;
+  width: 50%;
+  padding-top: 10px;
+}
+.right-column {
+  float: right;
+  width: 50%;
+  margin: 0px;
+}
+.button {
+  padding-top: 20px;
+}
+</style>
