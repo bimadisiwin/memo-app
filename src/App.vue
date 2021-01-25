@@ -21,42 +21,21 @@ export default {
   data() {
     return {
       memos: [],
+      memo: "",
     };
+  },
+  created: function () {
+    this.$store.dispatch("memos/init");
   },
   computed: {
     displayTitle() {
       return this.memos.map((value) => value.split("\n")[0]);
     },
   },
-  // mounted:DOMが作成された直後の状態
-  mounted() {
-    if (localStorage.getItem("memos")) {
-      try {
-        this.memos = JSON.parse(localStorage.getItem("memos"));
-      } catch (e) {
-        localStorage.removeItem("memos");
-      }
-    }
-  },
-  //
-  watch: {
-    memos: {
-      handler() {
-        const parsed = JSON.stringify(this.memos);
-        localStorage.setItem("memos", parsed);
-      },
-      deep: true,
-    },
-  },
   methods: {
     // メモの追加
-    createMemo(value) {
-      if (!value) {
-        return;
-      } else {
-        this.memos.push(value);
-        this.$router.push("/");
-      }
+    createMemo() {
+      this.$store.dispatch("memos/add", this.memo);
     },
     // メモの更新
     updateMemo(id, value) {
